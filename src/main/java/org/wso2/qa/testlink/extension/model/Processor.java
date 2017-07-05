@@ -1,3 +1,20 @@
+/**
+ * Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ * <p>
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 package org.wso2.qa.testlink.extension.model;
 
 import br.eti.kinoshita.testlinkjavaapi.model.CustomField;
@@ -53,7 +70,8 @@ public class Processor {
 
                 if (LOGGER.isDebugEnabled()) {
                     LOGGER.debug("Value of the custom field for unit test methods : " + unitTestMethodFieldValue);
-                    LOGGER.debug("Value of the custom field for integration test methods : " + integrationTestMethodFieldValue);
+                    LOGGER.debug("Value of the custom field for integration test methods : " +
+                            integrationTestMethodFieldValue);
                 }
 
                 boolean areIntegrationTestsAvailable = areIntegrationTestsAvailable(integrationTestMethodFieldValue);
@@ -70,7 +88,8 @@ public class Processor {
 
                 String overallResultStatus = Constants.PASS;
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug("Evaluating the result of the test case. Initial (assumed) result : " + overallResultStatus);
+                    LOGGER.debug("Evaluating the result of the test case. Initial (assumed) result : " +
+                            overallResultStatus);
                 }
 
                 //Find overall result for unit test
@@ -131,7 +150,8 @@ public class Processor {
                 }
 
 
-                // If there are no integration tests available, update the test case with the current overall result, only for "not-specified" platform
+                // If there are no integration tests available, update the test case
+                // with the current overall result, only for "not-specified" platform
                 if (!areIntegrationTestsAvailable) {
 
                     TestResult result = new TestResult();
@@ -169,7 +189,8 @@ public class Processor {
 
                         if (LOGGER.isDebugEnabled()) {
                             LOGGER.debug("\t\tEvaluating for the platform : " + platform);
-                            LOGGER.debug("\t\t\tCurrent result (inherited from unit tests if there were any) : " + overallResultStatus);
+                            LOGGER.debug("\t\t\tCurrent result (inherited from unit tests if there were any) : " +
+                                    overallResultStatus);
                         }
 
                         outerLoop:
@@ -182,15 +203,18 @@ public class Processor {
                             //If the test result method is not blank
                             if (StringUtils.isNotBlank(integrationTestMethod)) {
 
-                                List<TestResult> integrationTestResultsForPlatforms = testResults.get(integrationTestMethod);
-                                if (integrationTestResultsForPlatforms != null && !integrationTestResultsForPlatforms.isEmpty()) {
+                                List<TestResult> integrationTestResultsForPlatforms =
+                                        testResults.get(integrationTestMethod);
+                                if (integrationTestResultsForPlatforms != null &&
+                                        !integrationTestResultsForPlatforms.isEmpty()) {
                                     for (TestResult testResult : integrationTestResultsForPlatforms) {
                                         if (platform.getName().equals(testResult.getPlatform())) {
 
                                             String integrationTestResult = testResult.getStatus();
 
                                             if (LOGGER.isDebugEnabled()) {
-                                                LOGGER.debug("\t\t\t\tIntegration test result : " + integrationTestResult);
+                                                LOGGER.debug("\t\t\t\tIntegration test result : " +
+                                                        integrationTestResult);
                                             }
 
                                             isTestResultForPlatformAvailable = true;
@@ -201,8 +225,8 @@ public class Processor {
                                             if (testResult.getStatus().equals(Constants.FAIL)) {
 
                                                 if (LOGGER.isDebugEnabled()) {
-                                                    LOGGER.debug("\t\t\t\tNo further result evaluation is needed since one failed " +
-                                                            "test method has been found.");
+                                                    LOGGER.debug("\t\t\t\tNo further result evaluation is needed" +
+                                                            " since one failed test method has been found.");
                                                 }
 
                                                 break outerLoop;
@@ -232,7 +256,8 @@ public class Processor {
                 }
             } else {
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug(String.format("Test Case '%s' doesn't have custom fields. Skipping the test case.", testCase.getFullExternalId()));
+                    LOGGER.debug(String.format("Test Case '%s' doesn't have custom fields. Skipping the test case.",
+                            testCase.getFullExternalId()));
                 }
             }
         }
@@ -273,8 +298,9 @@ public class Processor {
 
     private String getUITestMethodName(TestCase testCase) {
         for (CustomField customField : testCase.getCustomFields()) {
-            if (configurations.getUiTestCustomFieldName().equals(customField.getName()))
+            if (configurations.getUiTestCustomFieldName().equals(customField.getName())) {
                 return customField.getValue();
+            }
         }
         return null;
     }
