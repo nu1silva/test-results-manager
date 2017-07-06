@@ -34,6 +34,7 @@ import org.apache.log4j.Logger;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -114,7 +115,7 @@ public class TestLinkClient {
         return testCasesOfTestPlan;
     }
 
-    public Platform[] getPlatforms() {
+    Platform[] getPlatforms() {
         return platforms;
     }
 
@@ -172,7 +173,7 @@ public class TestLinkClient {
         try {
             testLinkURL = new URL(url);
             logger.debug(String.format("Connecting to TestLink. API URL : '%s', MD5 of the API key : '%s'",
-                    url, DigestUtils.md5(devKey)));
+                    url, Arrays.toString(DigestUtils.md5(devKey))));
             api = new TestLinkAPI(testLinkURL, devKey);
             logger.debug("Connected to TestLink successfully.");
         } catch (MalformedURLException e) {

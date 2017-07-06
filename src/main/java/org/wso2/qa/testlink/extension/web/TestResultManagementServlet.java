@@ -40,6 +40,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class TestResultManagementServlet extends HttpServlet {
 
+    private static final long serialVersionUID = 42L;
+
     private static final Logger LOGGER = Logger.getLogger(TestResultManagementServlet.class);
 
     @Override
@@ -88,7 +90,7 @@ public class TestResultManagementServlet extends HttpServlet {
             }
 
             if (LOGGER.isDebugEnabled()) {
-                if (carbonComponents != null && !carbonComponents.isEmpty()) {
+                if (!carbonComponents.isEmpty()) {
                     LOGGER.debug("Component dependencies : " + StringUtils.join(carbonComponents, ","));
                 } else {
                     LOGGER.debug("The product doesn't have component dependencies.");

@@ -32,6 +32,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ErrorHandlerServlet extends HttpServlet {
 
+    private static final long serialVersionUID = 42L;
+
     private static final Logger LOGGER = Logger.getLogger(ErrorHandlerServlet.class);
 
     @Override
@@ -57,8 +59,8 @@ public class ErrorHandlerServlet extends HttpServlet {
         }
 
         String responsePayload = null;
-        String errorMessage = String.format("Error occurred while serving the request.\n\tStatus Code :" +
-                " '%d'\n\tServlet Name : '%s' \n\tRequest URI : '%s'", statusCode, servletName, requestUri);
+        String errorMessage = String.format("Error occurred while serving the request. Status Code :" +
+                " '%d' Servlet Name : '%s' Request URI : '%s'", statusCode, servletName, requestUri);
 
         // If the immediate cause is a TestResultsManagerException, the log message and the response payload should be
         // based on whether the error is a runtime error or not.

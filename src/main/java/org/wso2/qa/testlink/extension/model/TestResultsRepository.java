@@ -65,7 +65,7 @@ public class TestResultsRepository {
             throw new RepositoryException("Cannot connect to database " + connectionURL, e);
         }
 
-        Map<String, List<TestResult>> testResults = new HashMap<String, List<TestResult>>();
+        Map<String, List<TestResult>> testResults;
 
         try {
             //Get integration test results from the database.
@@ -172,7 +172,8 @@ public class TestResultsRepository {
 
         try {
 
-            String queryForPreparedStatement = "SELECT * FROM " + configurations.getTableName() + " WHERE buildNo=?";
+            final String queryForPreparedStatement = String.format("SELECT * FROM %s WHERE buildNo=? ",
+                    configurations.getTableName());
             preparedStatement = connection.prepareStatement(queryForPreparedStatement);
             preparedStatement.setLong(1, buildNo);
             resultSet = preparedStatement.executeQuery();

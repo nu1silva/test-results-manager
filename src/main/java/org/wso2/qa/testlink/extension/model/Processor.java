@@ -41,13 +41,13 @@ public class Processor {
     private Platform[] platforms = null;
     private Configurations configurations = Configurations.getInstance();
 
-    public Processor(Map<String, List<TestResult>> testResults, TestCase[] testCases, Platform[] platforms) {
+    Processor(Map<String, List<TestResult>> testResults, TestCase[] testCases, Platform[] platforms) {
         this.testResults = testResults;
         this.testCases = testCases;
         this.platforms = platforms;
     }
 
-    public List<TestResult> getProcessedResults() {
+    List<TestResult> getProcessedResults() {
 
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug(String.format("Started processing %d test cases and %d rest results for %d platforms.",
@@ -296,12 +296,12 @@ public class Processor {
         return null;
     }
 
-    private String getUITestMethodName(TestCase testCase) {
-        for (CustomField customField : testCase.getCustomFields()) {
-            if (configurations.getUiTestCustomFieldName().equals(customField.getName())) {
-                return customField.getValue();
-            }
-        }
-        return null;
-    }
+//    private String getUITestMethodName(TestCase testCase) {
+//        for (CustomField customField : testCase.getCustomFields()) {
+//            if (configurations.getUiTestCustomFieldName().equals(customField.getName())) {
+//                return customField.getValue();
+//            }
+//        }
+//        return null;
+//    }
 }

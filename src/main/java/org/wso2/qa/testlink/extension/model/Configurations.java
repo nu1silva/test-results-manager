@@ -43,11 +43,9 @@ public class Configurations {
     }
 
     public static Configurations getInstance() {
-        if (instance == null) {
-            synchronized (Configurations.class) {
-                if (instance == null) {
-                    instance = new Configurations();
-                }
+        synchronized (Configurations.class) {
+            if (instance == null) {
+                instance = new Configurations();
             }
         }
         return instance;
