@@ -36,6 +36,10 @@ import java.util.Map;
  */
 public class TestResultsRepository {
 
+
+    private static String queryForPreparedStatementUT;
+    private static String queryForPreparedStatementIT;
+
     public Map<String, List<TestResult>> getResults(long buildNo, List<CarbonComponent> carbonComponents)
             throws RepositoryException {
 
@@ -117,10 +121,10 @@ public class TestResultsRepository {
             }
 
             // Remove the trailing , character before setting in the query.
-            queryForPreparedStatement = String.format(queryForPreparedStatement,
+            queryForPreparedStatementUT = String.format(queryForPreparedStatement,
                     StringUtils.removeEnd(componentNameAndVersionParis.toString(), ","));
 
-            preparedStatement = connection.prepareStatement(queryForPreparedStatement);
+            preparedStatement = connection.prepareStatement(queryForPreparedStatementUT);
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -172,9 +176,9 @@ public class TestResultsRepository {
 
         try {
 
-            final String queryForPreparedStatement = String.format("SELECT * FROM %s WHERE buildNo=? ",
+            queryForPreparedStatementIT = String.format("SELECT * FROM %s WHERE buildNo=? ",
                     configurations.getTableName());
-            preparedStatement = connection.prepareStatement(queryForPreparedStatement);
+            preparedStatement = connection.prepareStatement(queryForPreparedStatementIT);
             preparedStatement.setLong(1, buildNo);
             resultSet = preparedStatement.executeQuery();
 
