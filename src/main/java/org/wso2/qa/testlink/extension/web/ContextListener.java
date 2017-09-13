@@ -21,11 +21,11 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
 import org.wso2.qa.testlink.extension.model.Configurations;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import java.io.InputStream;
-import java.io.IOException;
-import java.util.Properties;
 
 /**
  * Servlet context listener which does the initializations tasks.

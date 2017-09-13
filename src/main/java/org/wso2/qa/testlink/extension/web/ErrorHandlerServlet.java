@@ -20,12 +20,12 @@ package org.wso2.qa.testlink.extension.web;
 import org.apache.log4j.Logger;
 import org.wso2.qa.testlink.extension.exception.TestResultsManagerException;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * The error handler servlet, which logs the exception properly and sends out the error message.
@@ -58,7 +58,7 @@ public class ErrorHandlerServlet extends HttpServlet {
             requestUri = "Unknown";
         }
 
-        String responsePayload = null;
+        String responsePayload;
         String errorMessage = String.format("Error occurred while serving the request. Status Code :" +
                 " '%d' Servlet Name : '%s' Request URI : '%s'", statusCode, servletName, requestUri);
 
