@@ -1,13 +1,13 @@
-/**
+/*
  * Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
- * <p>
+ *
  * WSO2 Inc. licenses this file to you under the Apache License,
  * Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -18,7 +18,7 @@
 package org.wso2.qa.testlink.extension.web;
 
 import org.apache.log4j.Logger;
-import org.wso2.qa.testlink.extension.model.TestResultsManagerException;
+import org.wso2.qa.testlink.extension.exception.TestResultsManagerException;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -58,7 +58,7 @@ public class ErrorHandlerServlet extends HttpServlet {
             requestUri = "Unknown";
         }
 
-        String responsePayload = null;
+        String responsePayload;
         String errorMessage = String.format("Error occurred while serving the request. Status Code :" +
                 " '%d' Servlet Name : '%s' Request URI : '%s'", statusCode, servletName, requestUri);
 

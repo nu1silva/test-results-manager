@@ -1,13 +1,13 @@
-/**
+/*
  * Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
- * <p>
+ *
  * WSO2 Inc. licenses this file to you under the Apache License,
  * Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -15,13 +15,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.wso2.qa.testlink.extension.model;
+package org.wso2.qa.testlink.extension.core;
 
 import br.eti.kinoshita.testlinkjavaapi.model.CustomField;
 import br.eti.kinoshita.testlinkjavaapi.model.Platform;
 import br.eti.kinoshita.testlinkjavaapi.model.TestCase;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.wso2.qa.testlink.extension.model.Configurations;
+import org.wso2.qa.testlink.extension.model.Constants;
+import org.wso2.qa.testlink.extension.model.TestResult;
 
 import java.util.ArrayList;
 import java.util.List;

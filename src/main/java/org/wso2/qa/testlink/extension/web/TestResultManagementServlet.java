@@ -1,13 +1,13 @@
-/**
+/*
  * Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
- * <p>
+ *
  * WSO2 Inc. licenses this file to you under the Apache License,
  * Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -18,11 +18,12 @@
 package org.wso2.qa.testlink.extension.web;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
-import org.apache.log4j.MDC;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+import org.wso2.qa.testlink.extension.core.TestResultsUpdater;
+import org.wso2.qa.testlink.extension.exception.TestResultsManagerException;
 import org.wso2.qa.testlink.extension.model.CarbonComponent;
-import org.wso2.qa.testlink.extension.model.TestResultsManagerException;
-import org.wso2.qa.testlink.extension.model.TestResultsUpdater;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,7 +43,7 @@ public class TestResultManagementServlet extends HttpServlet {
 
     private static final long serialVersionUID = 42L;
 
-    private static final Logger LOGGER = Logger.getLogger(TestResultManagementServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TestResultManagementServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -76,7 +77,7 @@ public class TestResultManagementServlet extends HttpServlet {
             }
 
 
-            List<CarbonComponent> carbonComponents = new ArrayList<CarbonComponent>();
+            List<CarbonComponent> carbonComponents = new ArrayList<>();
 
             String[] dependencies = componentsQueryParameterValue.split("-");
             String[] componentInfo;
