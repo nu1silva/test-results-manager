@@ -36,6 +36,15 @@ import java.util.Map;
 // read configs.properties
 
 /**
+ * TODO - Major refactoring required.
+ * <p>
+ * - get the components for a specific products
+ * - get results for the component with the latest build number
+ * - send back the map with the results.
+ */
+
+
+/**
  * Represents the test results database which is populated at the end of a Jenkins build.
  */
 public class TestResultsRepository {
@@ -93,6 +102,27 @@ public class TestResultsRepository {
 
         return testResults;
     }
+
+//    /**
+//     * This method will get all the related components, get the latest version of each component and then get the
+//     * results of each components version
+//     *
+//     * @return
+//     */
+//    private Map<String, List<TestResult>> getTestResults() {
+//
+//        Configurations configurations = Configurations.getInstance();
+//        List<CarbonComponent> carbonComponentList = new ArrayList<>();
+//        Map<String, List<TestResult>> allTestResults = new HashMap<String, List<TestResult>>();
+//
+//        PreparedStatement preparedStatement = null;
+//        ResultSet resultSet = null;
+//
+//        String queryForPreparedStatement = "SELECT * FROM " + configurations.getTableName() +
+//                " WHERE (component,version) IN (%s)";
+//        return null;
+//    }
+
 
     private Map<String, List<TestResult>> getUnitTestResults(List<CarbonComponent> carbonComponents,
                                                              Connection connection) throws SQLException {

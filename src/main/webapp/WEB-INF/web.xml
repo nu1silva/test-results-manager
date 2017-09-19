@@ -37,6 +37,30 @@
         <servlet-class>org.wso2.qa.testlink.extension.web.ErrorHandlerServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>TestResultManagementService</servlet-name>
+        <servlet-class>
+            com.sun.jersey.spi.container.servlet.ServletContainer
+        </servlet-class>
+
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>org.wso2.qa.testlink.extension.services</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>com.sun.jersey.api.xml.POJOMappingFeature</param-name>
+            <param-value>true</param-value>
+        </init-param>
+
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+
     <!-- servlet mappings -->
     <servlet-mapping>
         <servlet-name>ErrorHandler</servlet-name>
@@ -46,6 +70,11 @@
     <servlet-mapping>
         <servlet-name>TestResultManagementServlet</servlet-name>
         <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>TestResultManagementService</servlet-name>
+        <url-pattern>/api/v1/*</url-pattern>
     </servlet-mapping>
 
     <error-page>

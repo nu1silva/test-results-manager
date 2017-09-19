@@ -31,12 +31,27 @@ public class CarbonComponent {
         this.componentVersion = componentVersion;
     }
 
+    public CarbonComponent(String component) {
+        this.componentName = component;
+    }
+
+    public CarbonComponent() {
+    }
+
     public String getComponentName() {
         return componentName;
     }
 
     public String getComponentVersion() {
         return componentVersion;
+    }
+
+    public void setComponentVersion(String componentVersion) {
+        this.componentVersion = componentVersion;
+    }
+
+    public void setComponentName(String componentName) {
+        this.componentName = componentName;
     }
 
     @Override

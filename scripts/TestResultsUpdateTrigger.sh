@@ -5,12 +5,12 @@
 ##################
 LOG_FILE_LOCATION="/home/$USER/testresultstrigger.log" #log file location.
 HTTP_TIMEOUT=120 #time out value used for HTTP requests, set in seconds. In the case of cURL this is the max time allowed for the complete operation.
-REMOTE_SERVER_IP=192.168.48.112 #the ip address or the hostname of the remote server.
+REMOTE_SERVER_IP=loaclhost #the ip address or the hostname of the remote server.
 REQUEST_PAYLOAD="Oops!"
 RESPONSE="$(pwd)/out" 
 ASSERTION_VALUE="Successful" #a string that is looked for in the service response to validate successful service invocation.
 MSG="Oops!"
-ENDPOINT="http://192.168.48.112:8080/test-results-manager/update" #the URL of the test result update service.
+ENDPOINT="http://localhost:8080/test-results-manager/update" #the URL of the test result update service.
 COMPONENTS_QPARAM=""
 COMPONENTS_OUT="Oops!"
 

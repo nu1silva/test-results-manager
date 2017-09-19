@@ -27,6 +27,7 @@ import org.wso2.qa.testlink.extension.exception.TestResultsManagerException;
 import org.wso2.qa.testlink.extension.model.CarbonComponent;
 import org.wso2.qa.testlink.extension.model.TestResult;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,8 @@ public class TestResultsUpdater {
     private long buildNo;
     private List<CarbonComponent> carbonComponents = new ArrayList<CarbonComponent>();
 
+    CarbonComponentManagement componentManagement = new CarbonComponentManagement();
+
     public TestResultsUpdater(String projectName, String testPlanName, long buildNo,
                               List<CarbonComponent> carbonComponents) {
 
@@ -53,11 +56,25 @@ public class TestResultsUpdater {
         this.carbonComponents = carbonComponents;
     }
 
-    public void update() throws TestResultsManagerException {
+    public TestResultsUpdater(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public void update() throws TestResultsManagerException, SQLException, RepositoryException {
 
         TestResultsRepository testResultsRepository = new TestResultsRepository();
 
         Map<String, List<TestResult>> testResults = null;
+
+        logger.info("retrieving components available for product " + projectName);
+        List<CarbonComponent> componentList = componentManagement.getCarbonComponents(projectName);
+
+        logger.info("retrieving the latest version available for the components");
+        for (CarbonComponent carbonComponent : componentList) {
+            carbonComponent.setComponentVersion(String.valueOf(
+                    componentManagement.getCarbonComponentWithLatestBuild(carbonComponent.getComponentName())));
+            logger.info(carbonComponent.toString());
+        }
 
         try {
             if (logger.isDebugEnabled()) {
@@ -106,7 +123,10 @@ public class TestResultsUpdater {
             logger.debug("Available platforms : " + StringUtils.join(platforms, ","));
         }
 
+        // Let the processing begin!!!
         Processor processor = new Processor(testResults, testCases, platforms);
+
+        // This might get removed and get pushed to a database
         List<TestResult> updatedTestResults = processor.getProcessedResults();
 
         try {
